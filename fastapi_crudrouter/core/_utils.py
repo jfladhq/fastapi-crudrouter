@@ -1,8 +1,7 @@
 from typing import Optional, Type, Any
 
 from fastapi import Depends, HTTPException
-from pydantic import create_model
-from pydantic import __version__ as pydantic_version
+from pydantic import create_model, __version__ as pydantic_version
 
 from ._types import T, PAGINATION, PYDANTIC_SCHEMA
 
@@ -47,7 +46,7 @@ def schema_factory(
         }
 
     name = schema_cls.__name__ + name
-    schema: Type[T] = create_model(__model_name=name, **fields)  # type: ignore
+    schema: Type[T] = create_model(name, **fields)  # type: ignore
     return schema
 
 
